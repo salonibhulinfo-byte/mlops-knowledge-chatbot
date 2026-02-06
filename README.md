@@ -1,78 +1,76 @@
-# MLOps Knowledge Chatbot 
 # MLOps Knowledge Chatbot
 
-A RAG-powered chatbot that helps you learn MLOps concepts - from Docker to model deployment to monitoring.
+A chatbot that teaches MLOps concepts by answering questions about Docker, Kubernetes, model deployment, and production machine learning.
+
+## Why I built this
+
+After building my first RAG chatbot on AI research papers, I realized I understood the theory but not how to actually deploy ML models to production. So I built this second chatbot specifically to learn MLOps - the practical side of getting models into the real world.
 
 ## What it does
 
-Built this to learn production ML skills. You can ask questions like "How to containerize ML models?" or "What is MLflow?" and it searches through 25+ MLOps documents to give you answers.
+Ask it questions like:
+- "How do I containerize my ML model?"
+- "What's the difference between MLflow and Kubeflow?"
+- "How do I monitor models in production?"
 
-## Documents included
+It searches through 25 MLOps documents and gives you answers based on what it finds.
 
-**Research Papers (20):**
-- MLOps fundamentals & best practices
+## Documents I used
+
+I collected two types of content:
+
+**20 Research Papers on:**
+- MLOps fundamentals
 - Model deployment strategies
-- ML pipelines & automation
-- Monitoring & testing approaches
-- Feature stores & data management
-- CI/CD for machine learning
+- ML pipelines and automation
+- Monitoring and testing
+- Feature stores and data versioning
 
-**Tool Documentation (5):**
-- Docker basics
-- Kubernetes guide
-- MLflow quickstart
+**5 Tool Guides on:**
+- Docker
+- Kubernetes
+- MLflow
 - GitHub Actions for ML
 - AWS SageMaker
 
-## How I built it
+Total: 369 pages → 1,573 searchable chunks
 
-1. Collected 25 MLOps documents (369 pages total)
-2. Split into 1,573 searchable chunks
-3. Created vector embeddings using sentence-transformers
-4. Stored in FAISS vector database
-5. Built RAG pipeline with LangChain
-6. Added Streamlit chat interface
+## How it works
 
-## Tech used
+Same approach as my first project:
+1. Load all the PDFs
+2. Break them into chunks
+3. Turn chunks into vector embeddings
+4. Store in FAISS database
+5. When you ask a question, find relevant chunks
+6. Feed chunks to an LLM to generate an answer
+7. Show answer in Streamlit chat interface
+
+## Tech stack
 
 - Python
-- LangChain
-- HuggingFace (embeddings + LLM)
-- FAISS (vector database)
-- Streamlit (web UI)
-- Transformers
+- LangChain (for the RAG pipeline)
+- HuggingFace (embeddings and LLM)
+- FAISS (vector search)
+- Streamlit (web interface)
 
 ## How to run it
 ```bash
-# Clone and setup
 git clone https://github.com/salonibhulinfo-byte/mlops-knowledge-chatbot.git
 cd mlops-knowledge-chatbot
 python -m venv venv
 venv\Scripts\activate
-
-# Install packages
 pip install -r requirements.txt
-
-# Build vector database (first time only)
 python build_vectorstore.py
-
-# Run the chatbot
 streamlit run app.py
 ```
 
 ## What I learned
 
-- MLOps concepts (Docker, K8s, deployment, monitoring)
-- How production ML differs from research
-- Building domain-specific RAG applications
-- Working with technical documentation
-- Scaling RAG systems (1,573 chunks vs 1,177 in my first project)
+- Production ML is very different from notebook ML
+- MLOps covers way more than just deployment
+- Docker and Kubernetes are essential for ML engineers
+- Building a second RAG project was much faster (knew what worked)
+- Bigger isn't always better - 1,573 chunks takes longer to search
 
-## Things I'd improve
 
-- Add source citations for answers
-- Use better LLM (GPT-4) for clearer responses
-- Add code examples from documentation
-- Deploy online
-
-Built while learning production ML skills after my MSc in Data Science at University of Greenwich. This is my second RAG project - first one was on AI research papers.
